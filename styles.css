@@ -39,7 +39,7 @@ p {
 .carousel-container {
     position: relative; /* Make this container the reference point for absolute positioning */
     width: 100%; 
-    max-width: 300px; /* Adjust to control the overall width of the container */
+    max-width: 290px; /* Adjust to control the overall width of the container */
     margin: 0 auto;
     height: 610px; /* Fixed height to match the phone frame */
     overflow: hidden; /* Hide overflow to keep images within the frame */
@@ -47,7 +47,7 @@ p {
 
 .carousel {
     position: relative;
-    width: 100%;
+    width: 101%;
     height: 100%; /* Make sure the carousel takes the full height of the container */
     display: flex;
     justify-content: center;
@@ -57,7 +57,7 @@ p {
 .slides {
     display: flex;
     transition: transform 0.8s ease-in-out; /* Add transition for smooth sliding */
-    height: 100%; /* Ensure slides container takes full height */
+    height: 94%; /* Ensure slides container takes full height */
 }
 
 .slides img {
@@ -72,8 +72,8 @@ p {
     top: 50%; /* Center the frame vertically */
     left: 50%; /* Center the frame horizontally */
     transform: translate(-50%, -50%); /* Adjust to align the frame correctly */
-    width: 650px; /* Set a fixed width */
-    height: 650px; /* Set a fixed height */
+    width: 310px; /* Set a fixed width */
+    height: 620px; /* Set a fixed height */
     z-index: 2; /* Ensure the frame is on top of the carousel */
     pointer-events: none; /* Allow interactions with the carousel images behind the frame */
 }
