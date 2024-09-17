@@ -39,9 +39,9 @@ p {
 .carousel-container {
     position: relative; /* Make this container the reference point for absolute positioning */
     width: 100%; 
-    max-width: 400px; /* Adjust to control the overall width of the container */
+    max-width: 300px; /* Adjust to control the overall width of the container */
     margin: 0 auto;
-    height: 800px; /* Fixed height to match the phone frame */
+    height: 610px; /* Fixed height to match the phone frame */
     overflow: hidden; /* Hide overflow to keep images within the frame */
 }
 
