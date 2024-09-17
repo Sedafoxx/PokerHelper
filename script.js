@@ -33,7 +33,7 @@ setInterval(showNextSlide, 5000);
 
 // Download Button Logic
 document.getElementById('download-button').addEventListener('click', () => {
-    window.location.href = 'https://drive.google.com/uc?export=download&id=1S7pYJb70Ccvj52kihFf-4U50dHkmW8p6';
+    window.location.href = 'pokerhelper.apk';
 });
 
 // Contact Button Logic
