@@ -72,8 +72,8 @@ p {
     top: 50%; /* Center the frame vertically */
     left: 50%; /* Center the frame horizontally */
     transform: translate(-50%, -50%); /* Adjust to align the frame correctly */
-    width: 850px; /* Set a fixed width */
-    height: 850px; /* Set a fixed height */
+    width: 650px; /* Set a fixed width */
+    height: 650px; /* Set a fixed height */
     z-index: 2; /* Ensure the frame is on top of the carousel */
     pointer-events: none; /* Allow interactions with the carousel images behind the frame */
 }
