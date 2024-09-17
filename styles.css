@@ -1,0 +1,133 @@
+/* Import the custom font */
+@font-face {
+    font-family: 'FiveYearsOldFont';
+    src: url('fiveyearsoldfont.ttf') format('truetype');
+}
+
+body {
+    background: url('paper_texture.png') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'FiveYearsOldFont', sans-serif;
+    color: #212121;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+}
+
+header {
+    padding: 20px;
+}
+
+.logo {
+    width: 50px;
+    height: auto;
+}
+
+h1 {
+    font-size: 3rem;
+    color: #b9363e;
+}
+
+p {
+    font-size: 1.5rem;
+}
+
+.carousel-container {
+    position: relative; /* Make this container the reference point for absolute positioning */
+    width: 100%; 
+    max-width: 400px; /* Adjust to control the overall width of the container */
+    margin: 0 auto;
+    height: 800px; /* Fixed height to match the phone frame */
+    overflow: hidden; /* Hide overflow to keep images within the frame */
+}
+
+.carousel {
+    position: relative;
+    width: 100%;
+    height: 100%; /* Make sure the carousel takes the full height of the container */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Center the image vertically */
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.8s ease-in-out; /* Add transition for smooth sliding */
+    height: 100%; /* Ensure slides container takes full height */
+}
+
+.slides img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Adjusts the image to fit inside the container while maintaining its aspect ratio */
+    flex-shrink: 0; /* Prevent images from shrinking */
+}
+
+.phone-frame {
+    position: absolute; /* Position the frame on top of the carousel */
+    top: 50%; /* Center the frame vertically */
+    left: 50%; /* Center the frame horizontally */
+    transform: translate(-50%, -50%); /* Adjust to align the frame correctly */
+    width: 850px; /* Set a fixed width */
+    height: 850px; /* Set a fixed height */
+    z-index: 2; /* Ensure the frame is on top of the carousel */
+    pointer-events: none; /* Allow interactions with the carousel images behind the frame */
+}
+
+
+.download-section {
+    margin: 30px 0;
+}
+
+.feature-text-container {
+    margin: 20px 0; /* Add some spacing around the text */
+    text-align: center;
+    color: #b9363e; /* Color to match your theme */
+}
+
+.feature-text-container h2 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.feature-text-container p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+
+
+#download-button {
+    background-color: #f5f390;
+    border: none;
+    padding: 20px;
+    font-size: 1.5rem;
+    color: #212121;
+    cursor: pointer;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+#download-button:hover {
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.contact-section {
+    margin: 20px 0;
+}
+
+#contact-button {
+    background-color: #b9363e;
+    color: white;
+    padding: 15px;
+    font-size: 1.2rem;
+    border: none;
+    cursor: pointer;
+}
+
+#contact-button:hover {
+    background-color: #212121;
+}
