@@ -184,7 +184,7 @@ if (!isMobile()) {
     const customCursor = document.querySelector('.custom-cursor');
     let mouseX = 0, mouseY = 0;
     let cursorX = 0, cursorY = 0;
-    const speed = 0.7;
+    const speed = 0.9;
     const cursorSize = 10;
 
     document.addEventListener('mousemove', (event) => {

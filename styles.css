@@ -84,7 +84,7 @@ p {
 .slides {
     display: flex;
     transition: transform 0.8s ease-in-out; /* Add transition for smooth sliding */
-    height: 94%; /* Ensure slides container takes full height */
+    height: 93%; /* Ensure slides container takes full height */
 }
 
 .slides img {
@@ -142,7 +142,7 @@ p {
 }
 
 #download-button:hover {
-    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Add the poker chip GIFs to the left and right of the button */
