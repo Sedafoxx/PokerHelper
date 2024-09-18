@@ -11,7 +11,10 @@ body {
     color: #212121;
     margin: 0;
     padding: 0;
+    cursor: none;
 }
+
+
 
 .container {
     text-align: center;
@@ -107,12 +110,35 @@ p {
     padding: 20px;
     font-size: 1.5rem;
     color: #212121;
-    cursor: pointer;
+    /*cursor: pointer;*/
+    cursor: none;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
 }
 
 #download-button:hover {
     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Add the poker chip GIFs to the left and right of the button */
+#download-button::before,
+#download-button::after {
+    content: url('poker-chip-1.gif'); /* Set the content to the GIF */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); /* Center vertically */
+    width: 40px; /* Adjust size if necessary */
+    height: 40px; /* Adjust size if necessary */
+}
+
+/* Position the left GIF */
+#download-button::before {
+    left: +620px; /* Adjust position to the left of the button */
+}
+
+/* Position the right GIF */
+#download-button::after {
+    right: +820px; /* Adjust position to the right of the button */
 }
 
 .contact-section {
@@ -125,9 +151,22 @@ p {
     padding: 15px;
     font-size: 1.2rem;
     border: none;
-    cursor: pointer;
+    cursor: none;
 }
 
 #contact-button:hover {
     background-color: #212121;
+}
+
+/* Custom cursor styling */
+.custom-cursor {
+    position: absolute;
+    width: 40px; /* Adjust size as needed */
+    height: 40px; /* Adjust size as needed */
+    background: url('cursor_large.png') no-repeat center center / contain; /* Your custom cursor image */
+    border-radius: 50%;  /* If you want a rounded effect */
+    pointer-events: none; /* Prevent the cursor from interfering with other elements */
+    transition: transform 0.15s ease-out; /* Add a smooth transition effect */
+    /* mix-blend-mode: difference;  Optional: to create a cool visual effect */
+    z-index: 9999; /* Set a high z-index value to ensure it stays on top */
 }
