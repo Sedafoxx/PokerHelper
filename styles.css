@@ -225,7 +225,7 @@ p {
     margin: 0 5px;
     background-color: #ccc; /* Default color for inactive dots */
     border-radius: 50%;
-    cursor: pointer;
+    cursor: none;
     transition: background-color 0.3s;
 }
 

@@ -185,7 +185,7 @@ if (!isMobile()) {
     let mouseX = 0, mouseY = 0;
     let cursorX = 0, cursorY = 0;
     const speed = 0.7;
-    const cursorSize = 40;
+    const cursorSize = 10;
 
     document.addEventListener('mousemove', (event) => {
         mouseX = event.clientX;
@@ -196,7 +196,7 @@ if (!isMobile()) {
         cursorX += (mouseX - cursorX) * speed;
         cursorY += (mouseY - cursorY) * speed;
 
-        customCursor.style.transform = `translate3d(${cursorX - cursorSize / 2}px, ${cursorY - cursorSize / 2 + window.scrollY}px, 0)`;
+        customCursor.style.transform = `translate3d(${cursorX - cursorSize / 2 - 7}px, ${cursorY - cursorSize / 2 + window.scrollY + 3}px, 0)`;
         requestAnimationFrame(animateCursor);
     }
 
