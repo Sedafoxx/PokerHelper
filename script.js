@@ -1,4 +1,4 @@
-const carouselContainer = document.querySelector('.carousel-container');
+const slidesContainer = document.querySelector('.slides'); // Target the slides container instead of the carousel container
 const slides = document.querySelectorAll('.slides img');
 const totalSlides = slides.length;
 let currentSlide = 0;
@@ -32,7 +32,7 @@ function showPreviousSlide() {
 
 // Update the slide and feature text
 function updateSlide() {
-    document.querySelector('.slides').style.transform = `translateX(-${currentSlide * 100}%)`;
+    slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
     document.getElementById('feature-title').textContent = features[currentSlide].title;
     document.getElementById('feature-description').textContent = features[currentSlide].description;
 }
@@ -61,9 +61,9 @@ function resumeAutoSlide() {
 
 // Drag and swipe functionality for mobile
 function addMobileDragHandlers() {
-    carouselContainer.addEventListener('touchstart', startDrag);
-    carouselContainer.addEventListener('touchend', endDrag);
-    carouselContainer.addEventListener('touchmove', drag);
+    slidesContainer.addEventListener('touchstart', startDrag);
+    slidesContainer.addEventListener('touchend', endDrag);
+    slidesContainer.addEventListener('touchmove', drag);
 }
 
 function startDrag(event) {
@@ -101,11 +101,11 @@ function animation() {
 }
 
 function setCarouselPosition() {
-    carouselContainer.style.transform = `translateX(${currentTranslate}px)`;
+    slidesContainer.style.transform = `translateX(${currentTranslate}px)`;
 }
 
 function setPositionByIndex() {
-    currentTranslate = currentIndex * -carouselContainer.offsetWidth;
+    currentTranslate = currentIndex * -slidesContainer.offsetWidth;
     prevTranslate = currentTranslate;
     setCarouselPosition();
     updateSlide(); // Update slide text based on the current slide
@@ -116,9 +116,9 @@ if (isMobile()) {
     addMobileDragHandlers();
 } else {
     // Desktop interactions
-    carouselContainer.addEventListener('mousedown', pauseAutoSlide);
-    carouselContainer.addEventListener('mouseup', resumeAutoSlide);
-    carouselContainer.addEventListener('click', (event) => {
+    slidesContainer.addEventListener('mousedown', pauseAutoSlide);
+    slidesContainer.addEventListener('mouseup', resumeAutoSlide);
+    slidesContainer.addEventListener('click', (event) => {
         if (event.clientX < window.innerWidth / 2) {
             showPreviousSlide();
         } else {
@@ -132,6 +132,7 @@ if (isMobile()) {
 if (!isMobile()) {
     startAutoSlide();
 }
+
 
 // Update cursor appearance for desktop only
 if (!isMobile()) {
