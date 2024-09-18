@@ -1,3 +1,4 @@
+
 const slidesContainer = document.querySelector('.slides'); // Target the slides container instead of the carousel container
 const slides = document.querySelectorAll('.slides img');
 const totalSlides = slides.length;
@@ -11,7 +12,48 @@ let startPos = 0;
 let currentTranslate = 0;
 let prevTranslate = 0;
 let animationID;
-let currentIndex = 0;
+
+// Define the features array
+const features = [
+    { title: "Chip Calculator", description: "Fast and Easy Chip to Money Conversion" },
+    { title: "Money Tracker", description: "Visualizing Stack Fluctuation" },
+    { title: "Player Tracker", description: "Live Tracking of Preflop Action" },
+    { title: "Player Database", description: "Storing stats and tagging of known players" },
+    { title: "Ranges", description: "Experimenting and looking up push-fold situations" },
+    { title: "Tournament Manager", description: "All-in-one tool for organizing tournaments" },
+    { title: "Timer", description: "Featuring automatic calculation of level duration" },
+    { title: "Table Management", description: "Player and table management with automatic table balancing" },
+    { title: "Prize Distribution", description: "Dynamic geometric distribution of prize pool" },
+    { title: "Odds Calculator", description: "Calculating multiway all-in situations with side pots and expected values" }
+];
+
+
+// Create dots for the carousel
+const dotsContainer = document.querySelector('.dots-container');
+let dots = [];
+
+function createDots() {
+    for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('div');
+        dot.classList.add('dot');
+        if (i === currentSlide) dot.classList.add('active'); // Set the first dot as active
+        dotsContainer.appendChild(dot);
+        dots.push(dot);
+
+        // Add click event to each dot for manual slide control
+        dot.addEventListener('click', () => {
+            currentSlide = i;
+            updateSlide();
+            setPositionByIndex();
+        });
+    }
+}
+
+function updateActiveDot() {
+    dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+    });
+}
 
 // Check if the device is mobile
 function isMobile() {
@@ -35,6 +77,7 @@ function updateSlide() {
     slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
     document.getElementById('feature-title').textContent = features[currentSlide].title;
     document.getElementById('feature-description').textContent = features[currentSlide].description;
+    updateActiveDot(); // Update active dot based on the current slide
 }
 
 // Automatic slide control
@@ -78,10 +121,11 @@ function endDrag() {
     const movedBy = currentTranslate - prevTranslate;
 
     // If moved enough to swipe to the next or previous slide
-    if (movedBy < -100 && currentIndex < totalSlides - 1) currentIndex += 1;
-    if (movedBy > 100 && currentIndex > 0) currentIndex -= 1;
+    if (movedBy < -100 && currentSlide < totalSlides - 1) currentSlide += 1;
+    if (movedBy > 100 && currentSlide > 0) currentSlide -= 1;
 
     setPositionByIndex();
+    updateSlide(); // Update slide text and dots after dragging
 }
 
 function drag(event) {
@@ -105,10 +149,9 @@ function setCarouselPosition() {
 }
 
 function setPositionByIndex() {
-    currentTranslate = currentIndex * -slidesContainer.offsetWidth;
+    currentTranslate = currentSlide * -slidesContainer.offsetWidth;
     prevTranslate = currentTranslate;
     setCarouselPosition();
-    updateSlide(); // Update slide text based on the current slide
 }
 
 // Add event listeners based on device type
@@ -133,6 +176,8 @@ if (!isMobile()) {
     startAutoSlide();
 }
 
+// Create dots when the page loads
+createDots();
 
 // Update cursor appearance for desktop only
 if (!isMobile()) {
@@ -166,7 +211,6 @@ if (!isMobile()) {
     });
 }
 
-
 // Download Button Logic
 document.getElementById('download-button').addEventListener('click', () => {
     const link = document.createElement('a');
@@ -174,7 +218,6 @@ document.getElementById('download-button').addEventListener('click', () => {
     link.download = 'pokerhelper.apk';
     link.click();
 });
-
 
 // Contact Button Logic
 document.getElementById('contact-button').addEventListener('click', () => {

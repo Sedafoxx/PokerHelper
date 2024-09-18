@@ -211,3 +211,25 @@ p {
         transform: translate(-50%, -50%); /* Center it relative to its position */
     }
 }
+
+/* Dots container styling */
+.dots-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    background-color: #ccc; /* Default color for inactive dots */
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.dot.active {
+    background-color: #b9363e; /* Highlight color for the active dot */
+}
+
