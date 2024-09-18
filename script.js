@@ -100,7 +100,7 @@ document.getElementById('contact-button').addEventListener('click', () => {
 const customCursor = document.querySelector('.custom-cursor');
 let mouseX = 0, mouseY = 0;
 let cursorX = 0, cursorY = 0;
-const speed = 0.1; // Adjust this value to control the "floatiness"
+const speed = 0.7; // Adjust this value to control the "floatiness"
 const cursorSize = 40; // Set this to the size of your custom cursor
 
 document.addEventListener('mousemove', (event) => {
@@ -119,3 +119,13 @@ function animateCursor() {
 }
 
 animateCursor();
+
+// Change cursor image on click
+document.addEventListener('mousedown', () => {
+    customCursor.style.background = "url('cursor_large_click.png') no-repeat center center / contain";
+});
+
+// Change cursor image back on release
+document.addEventListener('mouseup', () => {
+    customCursor.style.background = "url('cursor_large.png') no-repeat center center / contain";
+});

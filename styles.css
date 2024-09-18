@@ -21,8 +21,26 @@ body {
     padding: 20px;
 }
 
+/* Header styles */
 header {
     padding: 20px;
+    position: relative; /* Make sure the header doesn't affect other elements */
+    min-height: 150px;
+}
+
+/* Title styling */
+header h1 {
+    font-size: 3rem;
+    color: #b9363e;
+    margin: 0;
+}
+
+/* Subtitle (paragraph) styling */
+header p {
+    font-size: 1.5rem;
+    min-height: 50px; /* Set minimum height to reserve space for multiline text */
+    padding-top: 10px; /* Optional: Add some padding for spacing */
+    margin: 0;
 }
 
 .logo {
@@ -33,17 +51,23 @@ header {
 h1 {
     font-size: 3rem;
     color: #b9363e;
+    margin: 0;
+    min-height: 50px; /* Set minimum height to reserve space for multiline text */
 }
 
 p {
     font-size: 1.5rem;
+    min-height: 80px; /* Set minimum height to reserve space for multiline text */
+    padding-top: 10px; /* Optional: Add some padding for spacing */
+    margin: 0;
 }
 
+/* Carousel container */
 .carousel-container {
     position: relative; /* Make this container the reference point for absolute positioning */
-    width: 100%; 
+    width: 100%;
     max-width: 290px; /* Adjust to control the overall width of the container */
-    margin: 0 auto;
+    margin: 30px auto 0; /* Add top margin to create space between header and carousel */
     height: 610px; /* Fixed height to match the phone frame */
     overflow: hidden; /* Hide overflow to keep images within the frame */
 }
@@ -70,6 +94,7 @@ p {
     flex-shrink: 0; /* Prevent images from shrinking */
 }
 
+/* Phone frame overlay */
 .phone-frame {
     position: absolute; /* Position the frame on top of the carousel */
     top: 50%; /* Center the frame vertically */
