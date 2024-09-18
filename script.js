@@ -129,3 +129,14 @@ document.addEventListener('mousedown', () => {
 document.addEventListener('mouseup', () => {
     customCursor.style.background = "url('cursor_large.png') no-repeat center center / contain";
 });
+
+function isMobile() {
+    return window.innerWidth <= 600;
+}
+
+document.addEventListener('mousemove', (event) => {
+    if (!isMobile()) { // Only update cursor on non-mobile screens
+        mouseX = event.clientX;
+        mouseY = event.clientY;
+    }
+});

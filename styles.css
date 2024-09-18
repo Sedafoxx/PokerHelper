@@ -195,3 +195,19 @@ p {
     /* mix-blend-mode: difference;  Optional: to create a cool visual effect */
     z-index: 9999; /* Set a high z-index value to ensure it stays on top */
 }
+
+/* Media query for mobile screens */
+@media (max-width: 600px) {
+    /* Hide custom cursor on mobile */
+    .custom-cursor {
+        display: none;
+    }
+
+    /* Move the GIF to a new location on mobile */
+    #download-button::before,
+    #download-button::after {
+        top: 1500%; /* Adjust position as needed */
+        left: 10%; /* Adjust horizontal position */
+        transform: translate(-50%, -50%); /* Center it relative to its position */
+    }
+}
