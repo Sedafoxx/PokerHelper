@@ -1,24 +1,22 @@
-// Carousel controls
-let currentSlide = 0;
+const carouselContainer = document.querySelector('.carousel-container');
 const slides = document.querySelectorAll('.slides img');
 const totalSlides = slides.length;
-let slideInterval; // Variable to hold the interval for automatic sliding
+let currentSlide = 0;
+let slideInterval; // Interval for automatic sliding
 let autoSlideDelay = 5000; // Time in milliseconds for automatic sliding
-let isAutoSliding = true; // Flag to track if auto-sliding is currently running
+let isAutoSliding = true; // Flag for auto-sliding state
 
-// Feature titles and descriptions
-const features = [
-    { title: "Chip Calculator", description: "Fast and Easy Chip to Money Conversion" },
-    { title: "Money Tracker", description: "Visualizing Stack Fluctuation" },
-    { title: "Player Tracker", description: "Live Tracking of Preflop Action" },
-    { title: "Player Data Base", description: "Storing stats and tagging of known players" },
-    { title: "Ranges", description: "Experimenting and looking up for push-fold situations" },
-    { title: "Tournament Manager", description: "All in one tool for organizing tournaments" },
-    { title: "Tournament Manager", description: "Timer featuring automatic calculation of level duration" },
-    { title: "Tournament Manager", description: "Player and table management with automatic table balancing" },
-    { title: "Tournament Manager", description: "Dynamic geometric distribution of prize pool" },
-    { title: "Odds Calculator", description: "Calculating multiway all-in situations with side pots and expected values" }
-];
+let isDragging = false;
+let startPos = 0;
+let currentTranslate = 0;
+let prevTranslate = 0;
+let animationID;
+let currentIndex = 0;
+
+// Check if the device is mobile
+function isMobile() {
+    return window.innerWidth <= 600;
+}
 
 // Show the next slide
 function showNextSlide() {
@@ -50,37 +48,123 @@ function startAutoSlide() {
 // Pause automatic sliding
 function pauseAutoSlide() {
     clearInterval(slideInterval);
-    isAutoSliding = false; // Set the flag to indicate auto-sliding is paused
+    isAutoSliding = false;
 }
 
 // Resume automatic sliding after a delay
 function resumeAutoSlide() {
     if (!isAutoSliding) {
-        isAutoSliding = true; // Set the flag to indicate auto-sliding will resume
-        setTimeout(startAutoSlide, autoSlideDelay); // Resume auto-sliding after the specified delay
+        isAutoSliding = true;
+        setTimeout(startAutoSlide, autoSlideDelay);
     }
 }
 
-// Event listeners for user interaction
-const carouselContainer = document.querySelector('.carousel-container');
+// Drag and swipe functionality for mobile
+function addMobileDragHandlers() {
+    carouselContainer.addEventListener('touchstart', startDrag);
+    carouselContainer.addEventListener('touchend', endDrag);
+    carouselContainer.addEventListener('touchmove', drag);
+}
 
-carouselContainer.addEventListener('mousedown', pauseAutoSlide);
-carouselContainer.addEventListener('mouseup', resumeAutoSlide);
-carouselContainer.addEventListener('touchstart', pauseAutoSlide);
-carouselContainer.addEventListener('touchend', resumeAutoSlide);
+function startDrag(event) {
+    isDragging = true;
+    startPos = getPositionX(event);
+    animationID = requestAnimationFrame(animation);
+}
 
-// Manual slide control (left and right arrows)
-carouselContainer.addEventListener('click', (event) => {
-    if (event.clientX < window.innerWidth / 2) {
-        showPreviousSlide();
-    } else {
-        showNextSlide();
+function endDrag() {
+    isDragging = false;
+    cancelAnimationFrame(animationID);
+    const movedBy = currentTranslate - prevTranslate;
+
+    // If moved enough to swipe to the next or previous slide
+    if (movedBy < -100 && currentIndex < totalSlides - 1) currentIndex += 1;
+    if (movedBy > 100 && currentIndex > 0) currentIndex -= 1;
+
+    setPositionByIndex();
+}
+
+function drag(event) {
+    if (isDragging) {
+        const currentPosition = getPositionX(event);
+        currentTranslate = prevTranslate + currentPosition - startPos;
     }
-    resumeAutoSlide(); // Restart the auto slide after manual control
-});
+}
 
-// Start automatic sliding on page load
-startAutoSlide();
+function getPositionX(event) {
+    return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+}
+
+function animation() {
+    setCarouselPosition();
+    if (isDragging) requestAnimationFrame(animation);
+}
+
+function setCarouselPosition() {
+    carouselContainer.style.transform = `translateX(${currentTranslate}px)`;
+}
+
+function setPositionByIndex() {
+    currentTranslate = currentIndex * -carouselContainer.offsetWidth;
+    prevTranslate = currentTranslate;
+    setCarouselPosition();
+    updateSlide(); // Update slide text based on the current slide
+}
+
+// Add event listeners based on device type
+if (isMobile()) {
+    addMobileDragHandlers();
+} else {
+    // Desktop interactions
+    carouselContainer.addEventListener('mousedown', pauseAutoSlide);
+    carouselContainer.addEventListener('mouseup', resumeAutoSlide);
+    carouselContainer.addEventListener('click', (event) => {
+        if (event.clientX < window.innerWidth / 2) {
+            showPreviousSlide();
+        } else {
+            showNextSlide();
+        }
+        resumeAutoSlide();
+    });
+}
+
+// Start automatic sliding on page load (only for desktop)
+if (!isMobile()) {
+    startAutoSlide();
+}
+
+// Update cursor appearance for desktop only
+if (!isMobile()) {
+    const customCursor = document.querySelector('.custom-cursor');
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
+    const speed = 0.7;
+    const cursorSize = 40;
+
+    document.addEventListener('mousemove', (event) => {
+        mouseX = event.clientX;
+        mouseY = event.clientY;
+    });
+
+    function animateCursor() {
+        cursorX += (mouseX - cursorX) * speed;
+        cursorY += (mouseY - cursorY) * speed;
+
+        customCursor.style.transform = `translate3d(${cursorX - cursorSize / 2}px, ${cursorY - cursorSize / 2 + window.scrollY}px, 0)`;
+        requestAnimationFrame(animateCursor);
+    }
+
+    animateCursor();
+
+    document.addEventListener('mousedown', () => {
+        customCursor.style.background = "url('cursor_large_click.png') no-repeat center center / contain";
+    });
+
+    document.addEventListener('mouseup', () => {
+        customCursor.style.background = "url('cursor_large.png') no-repeat center center / contain";
+    });
+}
+
 
 // Download Button Logic
 document.getElementById('download-button').addEventListener('click', () => {
@@ -94,49 +178,4 @@ document.getElementById('download-button').addEventListener('click', () => {
 // Contact Button Logic
 document.getElementById('contact-button').addEventListener('click', () => {
     window.location.href = 'mailto:pokerhelper@gmail.com';
-});
-
-
-const customCursor = document.querySelector('.custom-cursor');
-let mouseX = 0, mouseY = 0;
-let cursorX = 0, cursorY = 0;
-const speed = 0.7; // Adjust this value to control the "floatiness"
-const cursorSize = 40; // Set this to the size of your custom cursor
-
-document.addEventListener('mousemove', (event) => {
-    mouseX = event.clientX;
-    mouseY = event.clientY;
-});
-
-function animateCursor() {
-    cursorX += (mouseX - cursorX) * speed;
-    cursorY += (mouseY - cursorY) * speed;
-
-    // Adjust cursor position to center it on the mouse, accounting for scroll
-    customCursor.style.transform = `translate3d(${cursorX - cursorSize / 2}px, ${cursorY - cursorSize / 2 + window.scrollY}px, 0)`;
-
-    requestAnimationFrame(animateCursor);
-}
-
-animateCursor();
-
-// Change cursor image on click
-document.addEventListener('mousedown', () => {
-    customCursor.style.background = "url('cursor_large_click.png') no-repeat center center / contain";
-});
-
-// Change cursor image back on release
-document.addEventListener('mouseup', () => {
-    customCursor.style.background = "url('cursor_large.png') no-repeat center center / contain";
-});
-
-function isMobile() {
-    return window.innerWidth <= 600;
-}
-
-document.addEventListener('mousemove', (event) => {
-    if (!isMobile()) { // Only update cursor on non-mobile screens
-        mouseX = event.clientX;
-        mouseY = event.clientY;
-    }
 });
