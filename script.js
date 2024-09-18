@@ -221,5 +221,5 @@ document.getElementById('download-button').addEventListener('click', () => {
 
 // Contact Button Logic
 document.getElementById('contact-button').addEventListener('click', () => {
-    window.location.href = 'mailto:pokerhelper@gmail.com';
+    window.location.href = 'mailto:pokerhelper@proton.me';
 });
