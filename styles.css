@@ -207,7 +207,7 @@ p {
     #download-button::before,
     #download-button::after {
         top: 1500%; /* Adjust position as needed */
-        left: 10%; /* Adjust horizontal position */
+        left: -5%; /* Adjust horizontal position */
         transform: translate(-50%, -50%); /* Center it relative to its position */
     }
 }
