@@ -62,6 +62,70 @@ p {
     margin: 0;
 }
 
+/* Form */
+form {
+    text-align: left;
+    margin: 20px auto;
+    width: 100%;
+    max-width: 400px;
+}
+
+.form-section form {
+    text-align: left;
+    margin: 20px auto;
+    width: 100%;
+    max-width: 400px;
+}
+
+.form-section input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form-section button {
+    background-color: #f5f390;
+    border: none;
+    padding: 15px;
+    font-size: 1.2rem;
+    color: #212121;
+    width: 100%;
+    cursor: pointer;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.form-section button:hover {
+    box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.3);
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #f5f390;
+    border: none;
+    padding: 15px;
+    font-size: 1.2rem;
+    color: #212121;
+    width: 100%;
+    cursor: pointer;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.3);
+}
+
+
 /* Carousel container */
 .carousel-container {
     position: relative; /* Make this container the reference point for absolute positioning */

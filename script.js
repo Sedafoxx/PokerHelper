@@ -211,6 +211,44 @@ if (!isMobile()) {
     });
 }
 
+document.getElementById('submit-button').addEventListener('click', (event) => {
+    event.preventDefault(); // Prevent form submission and page reload
+    
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+
+    // Send data to the PHP server
+    fetch('store_user.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: `name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`
+    })
+    .then(response => response.text())
+    .then(data => {
+        // Show confirmation message after success
+        document.getElementById('confirmation-message').style.display = 'block';
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});
+
+
+document.getElementById('check-password').addEventListener('click', (event) => {
+    event.preventDefault();
+    const password = document.getElementById('password').value;
+
+    if (password === 'your-secret-password') {
+        document.getElementById('apk-link').style.display = 'block'; // Show the download link
+    } else {
+        alert('Incorrect password');
+    }
+});
+
+
+
 // Download Button Logic
 document.getElementById('download-button').addEventListener('click', () => {
     const link = document.createElement('a');
@@ -224,3 +262,4 @@ document.getElementById('download-button').addEventListener('click', () => {
 document.getElementById('contact-button').addEventListener('click', () => {
     window.location.href = 'mailto:pokerhelper@proton.me';
 });
+
