@@ -2,29 +2,17 @@
 session_start();
 
 // Check if the user is allowed to download
-if (isset($_SESSION['download_allowed']) && $_SESSION['download_allowed'] === true) {
-    // Path to your version.json file
-    $json_url = 'https://pokerhelper.ddns.com/version.json';  // Change this to the correct path to version.json
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['password'])) {
+    $password = $_POST['password'];
 
-    // Fetch and decode the JSON data
-    $json_data = file_get_contents($json_url);
-    if ($json_data !== false) {
-        $version_data = json_decode($json_data, true);
-        
-        // Check if apk_url is present in the JSON
-        if (isset($version_data['apk_url'])) {
-            $apk_url = $version_data['apk_url'];
-            
-            // Redirect to the APK URL
-            header("Location: $apk_url");
-            exit;
-        } else {
-            echo "APK URL not found in version.json.";
-        }
+    // Check the password on the server
+    if ($password === 'your-secret-password') {
+        // Set a session or token indicating the user has access to the download
+        $_SESSION['download_allowed'] = true;
+        header('Location: download_apk.php'); // Redirect to the APK download script
+        exit;
     } else {
-        echo "Error fetching version.json.";
+        echo "Incorrect password. Please go back and try again.";
     }
-} else {
-    echo "Unauthorized access.";
 }
 ?>
