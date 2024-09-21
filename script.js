@@ -211,13 +211,14 @@ if (!isMobile()) {
     });
 }
 
+// Join the waiting list
 document.getElementById('submit-button').addEventListener('click', (event) => {
     event.preventDefault(); // Prevent form submission and page reload
     
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
 
-    // Send data to the PHP server
+    // Send data to the server (Assuming store_user.php handles storing the data)
     fetch('store_user.php', {
         method: 'POST',
         headers: {
@@ -227,7 +228,7 @@ document.getElementById('submit-button').addEventListener('click', (event) => {
     })
     .then(response => response.text())
     .then(data => {
-        // Show confirmation message after success
+        // Show confirmation message
         document.getElementById('confirmation-message').style.display = 'block';
     })
     .catch(error => {
@@ -236,17 +237,18 @@ document.getElementById('submit-button').addEventListener('click', (event) => {
 });
 
 
+// Password check logic to show the download link
 document.getElementById('check-password').addEventListener('click', (event) => {
     event.preventDefault();
     const password = document.getElementById('password').value;
 
-    if (password === 'your-secret-password') {
-        document.getElementById('apk-link').style.display = 'block'; // Show the download link
+    // Hard-coded password check
+    if (password === 'IAMALLIN') {
+        document.getElementById('apk-link').style.display = 'block'; // Show download link
     } else {
         alert('Incorrect password');
     }
 });
-
 
 
 // Download Button Logic
