@@ -214,10 +214,11 @@ if (!isMobile()) {
 // Download Button Logic
 document.getElementById('download-button').addEventListener('click', () => {
     const link = document.createElement('a');
-    link.href = 'pokerhelper.apk';
-    link.download = 'pokerhelper.apk';
+    link.href = 'https://edef7.pcloud.com/cBZ7nD5WMZBtQLboZZZ3iWqkkZ2ZZBU0ZkZrodk5ZbzZ97ZdHZhkZq0ZtpZA0ZDFZdJZzVZ7zZNHZFpZ9pZ3J3PZbH2mCLrt8oRwwshaqA1Maz9qWcAV/pokerhelper.apk'; // Direct link to the APK
+    link.download = 'pokerhelper.apk'; // Optional: specify the downloaded file's name
     link.click();
 });
+
 
 // Contact Button Logic
 document.getElementById('contact-button').addEventListener('click', () => {
