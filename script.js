@@ -237,7 +237,6 @@ document.getElementById('submit-button').addEventListener('click', (event) => {
 });
 
 
-// Password check logic to show the download link
 document.getElementById('check-password').addEventListener('click', (event) => {
     event.preventDefault();
     const password = document.getElementById('password').value;
@@ -245,10 +244,19 @@ document.getElementById('check-password').addEventListener('click', (event) => {
     // Hard-coded password check
     if (password === 'IAMALLIN') {
         document.getElementById('apk-link').style.display = 'block'; // Show download link
+        
+        // Show money rain animation
+        document.getElementById('money-rain').style.display = 'block';
+        
+        // Optionally hide the money rain after a few seconds
+        setTimeout(() => {
+            document.getElementById('money-rain').style.display = 'none';
+        }, 5000); // Hides the animation after 5 seconds
     } else {
         alert('Incorrect password');
     }
 });
+
 
 
 // Download Button Logic
