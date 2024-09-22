@@ -15,6 +15,7 @@ let animationID;
 
 // Define the features array
 const features = [
+    { title: "Learn Poker", description: "Complete Library of Texas Hold-em Knowledge from Beginner to Pro" },
     { title: "Chip Calculator", description: "Fast and Easy Chip to Money Conversion" },
     { title: "Money Tracker", description: "Visualizing Stack Fluctuation" },
     { title: "Player Tracker", description: "Live Tracking of Preflop Action" },
