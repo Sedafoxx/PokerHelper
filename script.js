@@ -222,7 +222,12 @@ document.getElementById('submit-button').addEventListener('click', (event) => {
             'Content-Type': 'application/json',
         }
     })
-    .then(response => response.text()) // Use .text() to handle raw text data
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.text(); // Use .text() to handle raw text data
+    })
     .then(data => {
         // Log the first few characters of the response
         const firstFewChars = data.substring(0, 100); // Retrieve the first 100 characters
@@ -233,7 +238,9 @@ document.getElementById('submit-button').addEventListener('click', (event) => {
         document.getElementById('confirmation-message').style.display = 'block';
     })
     .catch(error => {
-        console.error('Error:', error);
+        console.error('Error fetching data:', error);
+        document.getElementById('confirmation-message').textContent = 'Error: Unable to retrieve data.';
+        document.getElementById('confirmation-message').style.display = 'block';
     });
 });
 
