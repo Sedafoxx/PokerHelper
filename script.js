@@ -249,6 +249,33 @@ document.getElementById('submit-button').addEventListener('click', (event) => {
         document.getElementById('confirmation-message').textContent = 'Error: Unable to send data.';
         document.getElementById('confirmation-message').style.display = 'block';
     });
+
+    // Create form data for the POST request
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('email', email);
+
+    // Send the form data to the PHP script
+    fetch('https://pokerhelper.ddns.net/store_user.php', {
+        method: 'POST',
+        body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.message) {
+            document.getElementById('confirmation-message').textContent = data.message;
+            document.getElementById('confirmation-message').style.display = 'block';
+        } else {
+            console.error('Error:', data.error);
+            document.getElementById('confirmation-message').textContent = 'Error: ' + data.error;
+            document.getElementById('confirmation-message').style.display = 'block';
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        document.getElementById('confirmation-message').textContent = 'Error: Unable to send data.';
+        document.getElementById('confirmation-message').style.display = 'block';
+    });
 });
 
 

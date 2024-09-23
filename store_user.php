@@ -1,24 +1,25 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = $_POST['name'] ?? '';
-    $email = $_POST['email'] ?? '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
 
-    // Sanitize inputs
-    $name = filter_var($name, FILTER_SANITIZE_STRING);
-    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
-
-    if (!empty($name) && filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        // Write to file (you can replace this with DB logic)
-        $file = 'waitlist.txt';
+    if (!empty($name) && !empty($email)) {
         $data = "Name: $name, Email: $email\n";
+        $file = 'waitlist.txt';
 
-        // Append to file
-        file_put_contents($file, $data, FILE_APPEND);
-        echo "Success";
+        // Try writing the data to the file
+        if (file_put_contents($file, $data, FILE_APPEND | LOCK_EX)) {
+            echo json_encode(['message' => 'Data saved successfully!']);
+        } else {
+            http_response_code(500);
+            echo json_encode(['error' => 'Failed to write data to file']);
+        }
     } else {
-        echo "Invalid input.";
+        http_response_code(400);
+        echo json_encode(['error' => 'Missing name or email']);
     }
 } else {
-    echo "Invalid request method.";
+    http_response_code(405);
+    echo json_encode(['error' => 'Method not allowed']);
 }
 ?>
