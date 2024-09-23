@@ -219,7 +219,7 @@ document.getElementById('submit-button').addEventListener('click', (event) => {
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
 
-    fetch('/.netlify/v1/functions/store-and-send-email', {
+    fetch('/.netlify/functions/store-and-send-email', {
         method: 'POST', // Ensure it is POST
         headers: {
             'Content-Type': 'application/json',
