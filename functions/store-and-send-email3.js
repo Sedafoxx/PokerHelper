@@ -61,8 +61,12 @@ exports.handler = async (event, context) => {
                 <li>Track chips, money, and player stats effortlessly.</li>
                 <li>Table, prize pool, and time management tools for tournaments.</li>
               </ul>
+
+              <p>Your password to unlock the demo will be sent to you soon. Stay tuned for more details!</p>
+              
               <p>
-                <a href="https://pokerhelper.ddns.net" class="cta-button">Get Started Now</a>
+                <a href="https://twitter.com/intent/tweet?text=Check%20out%20PokerHelper!" class="share-button">Share on Twitter</a>
+                <a href="mailto:?subject=Check%20out%20PokerHelper&body=Try%20out%20PokerHelper%20here:%20https://pokerhelper.ddns.net" class="share-button">Share via Email</a>
               </p>
               <p>Best regards,<br><strong>The PokerHelper Team</strong></p>
             </body>
