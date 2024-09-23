@@ -212,21 +212,16 @@ if (!isMobile()) {
     });
 }
 
-// Join the waiting list
 document.getElementById('submit-button').addEventListener('click', (event) => {
     event.preventDefault(); // Prevent form submission and page reload
 
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-
-    fetch('/.netlify/functions/store-and-send-email2', {
-        method: 'POST', // Ensure it is POST
+    // Directly call the store-and-send-email function
+    fetch('/.netlify/functions/store-and-send-email', {
+        method: 'POST', // Ensure it's a POST request
         headers: {
             'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name: name, email: email }) // Send the name and email
+        }
     })
-    
     .then(response => response.json())
     .then(data => {
         if (data.message) {
@@ -240,6 +235,7 @@ document.getElementById('submit-button').addEventListener('click', (event) => {
         console.error('Error:', error);
     });
 });
+
 
 
 document.getElementById('check-password').addEventListener('click', (event) => {
