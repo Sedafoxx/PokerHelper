@@ -215,27 +215,42 @@ if (!isMobile()) {
 document.getElementById('submit-button').addEventListener('click', (event) => {
     event.preventDefault(); // Prevent form submission and page reload
 
-    // Call the Netlify function and retrieve API response
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+
+    // Basic validation
+    if (!name || !email) {
+        document.getElementById('confirmation-message').textContent = 'Please enter both name and email!';
+        document.getElementById('confirmation-message').style.display = 'block';
+        return;
+    }
+
+    // Call the Netlify function and send name and email
     fetch('https://pokerhelper.ddns.net/.netlify/functions/store-and-send-email3', {
-        method: 'POST', // Ensure it's a POST request
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name: name, email: email }) // Send name and email
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.message) {
+            document.getElementById('confirmation-message').textContent = data.message;
+            document.getElementById('confirmation-message').style.display = 'block';
+        } else {
+            console.error('Error:', data.error);
+            document.getElementById('confirmation-message').textContent = 'Error: ' + data.error;
+            document.getElementById('confirmation-message').style.display = 'block';
         }
     })
-    .then(response => response.text()) // Use .text() to handle raw text data
-    .then(data => {
-        // Log the first few characters of the response
-        const firstFewChars = data.substring(0, 100); // Retrieve the first 100 characters
-        console.log('First few characters of API response:', firstFewChars);
-
-        // Optionally, you can display it in your HTML
-        document.getElementById('confirmation-message').textContent = firstFewChars;
-        document.getElementById('confirmation-message').style.display = 'block';
-    })
     .catch(error => {
-        console.error('Error:', error);
+        console.error('Error fetching data:', error);
+        document.getElementById('confirmation-message').textContent = 'Error: Unable to send data.';
+        document.getElementById('confirmation-message').style.display = 'block';
     });
 });
+
 
 
 
