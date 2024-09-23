@@ -215,26 +215,28 @@ if (!isMobile()) {
 document.getElementById('submit-button').addEventListener('click', (event) => {
     event.preventDefault(); // Prevent form submission and page reload
 
-    // Directly call the store-and-send-email function
+    // Call the Netlify function and retrieve API response
     fetch('https://pokerhelper.ddns.net/.netlify/functions/store-and-send-email3', {
         method: 'POST', // Ensure it's a POST request
         headers: {
             'Content-Type': 'application/json',
         }
     })
-    .then(response => response.json())
+    .then(response => response.text()) // Use .text() to handle raw text data
     .then(data => {
-        if (data.message) {
-            document.getElementById('confirmation-message').style.display = 'block';
-            console.log('Success:', data.message);
-        } else {
-            console.error('Error:', data.error);
-        }
+        // Log the first few characters of the response
+        const firstFewChars = data.substring(0, 100); // Retrieve the first 100 characters
+        console.log('First few characters of API response:', firstFewChars);
+
+        // Optionally, you can display it in your HTML
+        document.getElementById('confirmation-message').textContent = firstFewChars;
+        document.getElementById('confirmation-message').style.display = 'block';
     })
     .catch(error => {
         console.error('Error:', error);
     });
 });
+
 
 
 
