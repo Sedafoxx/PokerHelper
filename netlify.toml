@@ -1,0 +1,3 @@
+#netlify.toml
+[build]
+functions = ".netlify/v1/functions"

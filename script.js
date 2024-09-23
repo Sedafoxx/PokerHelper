@@ -1,4 +1,4 @@
-
+// script.js
 const slidesContainer = document.querySelector('.slides'); // Target the slides container instead of the carousel container
 const slides = document.querySelectorAll('.slides img');
 const totalSlides = slides.length;
@@ -219,14 +219,14 @@ document.getElementById('submit-button').addEventListener('click', (event) => {
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
 
-    // Send data to the Netlify function
-    fetch('store-and-send-email', {
-        method: 'POST',
+    fetch('/.netlify/v1/functions/store-and-send-email', {
+        method: 'POST', // Ensure it is POST
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name: name, email: email }) // Send the data as JSON
+        body: JSON.stringify({ name: name, email: email }) // Send the name and email
     })
+    
     .then(response => response.json())
     .then(data => {
         if (data.message) {
@@ -263,17 +263,6 @@ document.getElementById('check-password').addEventListener('click', (event) => {
         alert('Incorrect password');
     }
 });
-
-
-
-// Download Button Logic
-document.getElementById('download-button').addEventListener('click', () => {
-    const link = document.createElement('a');
-    link.href = 'https://edef7.pcloud.com/cBZ7nD5WMZBtQLboZZZ3iWqkkZ2ZZBU0ZkZrodk5ZbzZ97ZdHZhkZq0ZtpZA0ZDFZdJZzVZ7zZNHZFpZ9pZ3J3PZbH2mCLrt8oRwwshaqA1Maz9qWcAV/pokerhelper.apk'; // Direct link to the APK
-    link.download = 'pokerhelper.apk'; // Optional: specify the downloaded file's name
-    link.click();
-});
-
 
 // Contact Button Logic
 document.getElementById('contact-button').addEventListener('click', () => {
