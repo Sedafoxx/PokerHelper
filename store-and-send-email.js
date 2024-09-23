@@ -43,7 +43,7 @@ const msg = {
     <ul>
       <li>Learn poker strategies from beginner to pro.</li>
       <li>Track chips, money, and player stats effortlessly.</li>
-      <li>Participate in live tournaments with real-time tracking.</li>
+      <li>Table, prizepool and time management tools for tournaments.</li>
     </ul>
     <!-- CTA Button -->
     <p>
