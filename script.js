@@ -254,30 +254,21 @@ document.getElementById('submit-button').addEventListener('click', (event) => {
     });
 
     // Second fetch call: Send data to external server
-    fetch('https://pokerhelper.bposselt.at/send_message', {
+    fetch('https://pokerhelper.ddns.net/.netlify/functions/proxy-send-message', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded', // Important for sending form data
+          'Content-Type': 'application/json',
         },
-        body: new URLSearchParams({
-            'message': message // Send the message in the body
-        }),
-        mode: 'no-cors'
+        body: JSON.stringify({ name: name, email: email }),
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.text();
-    })
+    .then(response => response.json())
     .then(data => {
-        console.log('Server Success:', data);
-        document.getElementById('confirmation-message').textContent += ' Message also sent to external server!';
+        document.getElementById('confirmation-message').textContent = data.message || 'Sign-up successful!';
         document.getElementById('confirmation-message').style.display = 'block';
     })
     .catch(error => {
-        console.error('Server Error:', error);
-        document.getElementById('confirmation-message').textContent = 'Error: Unable to send data to external server.';
+        console.error('Error:', error);
+        document.getElementById('confirmation-message').textContent = 'Error: Unable to send data.';
         document.getElementById('confirmation-message').style.display = 'block';
     });
 });
