@@ -24,7 +24,7 @@ exports.handler = async (event, context) => {
     return {
       statusCode: 200,
       body: JSON.stringify({
-        message: 'Waiting for response...', // Message has been sent!
+        message: 'Thank you for signing up! A confirmation email has been sent!', // Message has been sent!
         serverResponse: responseText,
       }),
     };
