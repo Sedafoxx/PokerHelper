@@ -225,7 +225,7 @@ document.getElementById('submit-button').addEventListener('click', (event) => {
         return;
     }
 
-    // Call the Netlify function and send name and email
+    // First, send the email using the Netlify function
     fetch('https://pokerhelper.ddns.net/.netlify/functions/store-and-send-email3', {
         method: 'POST',
         headers: {
@@ -236,47 +236,38 @@ document.getElementById('submit-button').addEventListener('click', (event) => {
     .then(response => response.json())
     .then(data => {
         if (data.message) {
-            document.getElementById('confirmation-message').textContent = data.message;
-            document.getElementById('confirmation-message').style.display = 'block';
+            // If email is sent successfully, then proceed to write to waitlist
+            document.getElementById('confirmation-message').textContent = 'Email sent! Now adding you to the waitlist...';
+
+            // Create form data for the PHP POST request
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('email', email);
+
+            return fetch('https://pokerhelper.ddns.net/store_user.php', {
+                method: 'POST',
+                body: formData,
+            });
         } else {
-            console.error('Error:', data.error);
-            document.getElementById('confirmation-message').textContent = 'Error: ' + data.error;
-            document.getElementById('confirmation-message').style.display = 'block';
+            throw new Error(data.error || 'Failed to send email.');
         }
     })
-    .catch(error => {
-        console.error('Error fetching data:', error);
-        document.getElementById('confirmation-message').textContent = 'Error: Unable to send data.';
-        document.getElementById('confirmation-message').style.display = 'block';
-    });
-
-    // Create form data for the POST request
-    const formData = new FormData();
-    formData.append('name', name);
-    formData.append('email', email);
-
-    // Send the form data to the PHP script
-    fetch('https://pokerhelper.ddns.net/store_user.php', {
-        method: 'POST',
-        body: formData,
-    })
-    .then(response => response.json())
+    .then(response => response.text()) // Handle the response from the PHP script
     .then(data => {
-        if (data.message) {
-            document.getElementById('confirmation-message').textContent = data.message;
-            document.getElementById('confirmation-message').style.display = 'block';
+        if (data.includes('Success')) {
+            document.getElementById('confirmation-message').textContent = 'Successfully added to the waitlist!';
         } else {
-            console.error('Error:', data.error);
-            document.getElementById('confirmation-message').textContent = 'Error: ' + data.error;
-            document.getElementById('confirmation-message').style.display = 'block';
+            throw new Error(data || 'Failed to write to the waitlist.');
         }
+        document.getElementById('confirmation-message').style.display = 'block';
     })
     .catch(error => {
         console.error('Error:', error);
-        document.getElementById('confirmation-message').textContent = 'Error: Unable to send data.';
+        document.getElementById('confirmation-message').textContent = 'Error: ' + error.message;
         document.getElementById('confirmation-message').style.display = 'block';
     });
 });
+
 
 
 
