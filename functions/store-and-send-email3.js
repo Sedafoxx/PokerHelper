@@ -2,6 +2,19 @@ const sgMail = require('@sendgrid/mail');
 
 exports.handler = async (event, context) => {
     try {
+        // Parse the request body to get the name and email
+        const { name, email } = JSON.parse(event.body);
+
+        // Validate the name and email
+        if (!name || !email) {
+            return {
+                statusCode: 400,
+                body: JSON.stringify({
+                    error: 'Name and email are required fields!',
+                }),
+            };
+        }
+
         // Fetch the SendGrid API key from environment variables
         const apiKey = process.env.SENDGRID_API_KEY;
 
@@ -14,10 +27,10 @@ exports.handler = async (event, context) => {
 
         // Define the email message
         const msg = {
-            to: 'buryakdimitri@gmail.com', // Your recipient
+            to: email, // Use the email provided in the input
             from: 'pokerhelper@proton.me', // Your verified sender
-            subject: 'Thanks for signing up!',
-            text: 'Thank you for signing up to PokerHelper! We’re thrilled to have you on board.',
+            subject: `Welcome, ${name}! Thanks for signing up!`, // Personalized subject
+            text: `Hi ${name},\nThank you for signing up to PokerHelper! We’re thrilled to have you on board.`,
             html: `
             <!DOCTYPE html>
             <html>
@@ -31,7 +44,6 @@ exports.handler = async (event, context) => {
                   border-radius: 5px;
                   display: inline-block;
                 }
-                /* Responsive design */
                 @media only screen and (max-width: 600px) {
                   .content {
                     font-size: 16px;
@@ -41,7 +53,7 @@ exports.handler = async (event, context) => {
             </head>
             <body style="font-family: Arial, sans-serif;">
               <img src="https://pokerhelper.ddns.net/header.png" alt="PokerHelper" style="width: 100%; height: auto;">
-              <p>Hi there,</p>
+              <p>Hi ${name},</p>
               <p>Thank you for signing up to <strong>PokerHelper</strong>! We’re thrilled to have you on board.</p>
               <p><strong>With PokerHelper, you can:</strong></p>
               <ul>
