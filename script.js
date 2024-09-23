@@ -225,7 +225,10 @@ document.getElementById('submit-button').addEventListener('click', (event) => {
         return;
     }
 
-    // First, send the email using the Netlify function
+    // Create the message to send
+    const message = `Sign Up: Name - ${name}, Email - ${email}`;
+
+    // First fetch call: Send data to Netlify function
     fetch('https://pokerhelper.ddns.net/.netlify/functions/store-and-send-email3', {
         method: 'POST',
         headers: {
@@ -236,34 +239,44 @@ document.getElementById('submit-button').addEventListener('click', (event) => {
     .then(response => response.json())
     .then(data => {
         if (data.message) {
-            // If email is sent successfully, then proceed to write to waitlist
-            document.getElementById('confirmation-message').textContent = 'Email sent! Now adding you to the waitlist...';
-
-            // Create form data for the PHP POST request
-            const formData = new FormData();
-            formData.append('name', name);
-            formData.append('email', email);
-
-            return fetch('https://pokerhelper.ddns.net/store_user.php', {
-                method: 'POST',
-                body: formData,
-            });
+            console.log('Netlify Function Success:', data.message);
+            document.getElementById('confirmation-message').textContent = data.message;
         } else {
-            throw new Error(data.error || 'Failed to send email.');
-        }
-    })
-    .then(response => response.text()) // Handle the response from the PHP script
-    .then(data => {
-        if (data.includes('Success')) {
-            document.getElementById('confirmation-message').textContent = 'Successfully added to the waitlist!';
-        } else {
-            throw new Error(data || 'Failed to write to the waitlist.');
+            console.error('Netlify Function Error:', data.error);
+            document.getElementById('confirmation-message').textContent = 'Error: ' + data.error;
         }
         document.getElementById('confirmation-message').style.display = 'block';
     })
     .catch(error => {
-        console.error('Error:', error);
-        document.getElementById('confirmation-message').textContent = 'Error: ' + error.message;
+        console.error('Netlify Function Error:', error);
+        document.getElementById('confirmation-message').textContent = 'Error: Unable to send data to Netlify function.';
+        document.getElementById('confirmation-message').style.display = 'block';
+    });
+
+    // Second fetch call: Send data to external server
+    fetch('https://pokerhelper.bposselt.at/send_message', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded', // Important for sending form data
+        },
+        body: new URLSearchParams({
+            'message': message // Send the message in the body
+        })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.text();
+    })
+    .then(data => {
+        console.log('Server Success:', data);
+        document.getElementById('confirmation-message').textContent += ' Message also sent to external server!';
+        document.getElementById('confirmation-message').style.display = 'block';
+    })
+    .catch(error => {
+        console.error('Server Error:', error);
+        document.getElementById('confirmation-message').textContent = 'Error: Unable to send data to external server.';
         document.getElementById('confirmation-message').style.display = 'block';
     });
 });
