@@ -1,3 +1,4 @@
 #netlify.toml
-[build]
-functions = ".netlify/functions"
+[functions]
+    directory = "functions/"
+    
