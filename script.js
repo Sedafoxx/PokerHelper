@@ -261,7 +261,8 @@ document.getElementById('submit-button').addEventListener('click', (event) => {
         },
         body: new URLSearchParams({
             'message': message // Send the message in the body
-        })
+        }),
+        mode: 'no-cors'
     })
     .then(response => {
         if (!response.ok) {
