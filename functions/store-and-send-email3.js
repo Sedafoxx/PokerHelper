@@ -71,12 +71,16 @@ exports.handler = async (event, context) => {
             `
         };
 
-        // Send the email using SendGrid
+        console.log('Attempting to send email...');
         await sgMail.send(msg);
+        console.log('Email sent successfully');
 
-        // Append the user's name and email to the waitlist.txt file
         const userData = `Name: ${name}, Email: ${email}\n`; // Format the data
-        fs.appendFileSync('waitlist.txt', userData, 'utf8'); // Append to file
+
+        console.log('Writing to waitlist.txt...');
+        fs.appendFileSync('waitlist.txt', dataToStore, 'utf8');
+        console.log('Data written to waitlist.txt');
+
 
         // Return a success response
         return {
