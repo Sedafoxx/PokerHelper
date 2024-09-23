@@ -241,6 +241,14 @@ document.getElementById('submit-button').addEventListener('click', (event) => {
         if (data.message) {
             console.log('Netlify Function Success:', data.message);
             document.getElementById('confirmation-message').textContent = data.message;
+
+            // Show money rain animation on success
+            document.getElementById('money-rain').style.display = 'block';
+            
+            // Optionally hide the money rain after a few seconds
+            setTimeout(() => {
+                document.getElementById('money-rain').style.display = 'none';
+            }, 5000); // Hides the animation after 5 seconds
         } else {
             console.error('Netlify Function Error:', data.error);
             document.getElementById('confirmation-message').textContent = 'Error: ' + data.error;
