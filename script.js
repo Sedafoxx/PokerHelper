@@ -216,7 +216,7 @@ document.getElementById('submit-button').addEventListener('click', (event) => {
     event.preventDefault(); // Prevent form submission and page reload
 
     // Directly call the store-and-send-email function
-    fetch('/.netlify/functions/store-and-send-email', {
+    fetch('/.netlify/functions/store-and-send-email3', {
         method: 'POST', // Ensure it's a POST request
         headers: {
             'Content-Type': 'application/json',
