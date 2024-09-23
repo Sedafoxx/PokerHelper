@@ -1,5 +1,4 @@
 const sgMail = require('@sendgrid/mail');
-const fs = require('fs'); // File system module for writing data to a file
 
 exports.handler = async (event, context) => {
     try {
@@ -71,22 +70,14 @@ exports.handler = async (event, context) => {
             `
         };
 
-        console.log('Attempting to send email...');
+        // Send the email using SendGrid
         await sgMail.send(msg);
-        console.log('Email sent successfully');
-
-        const userData = `Name: ${name}, Email: ${email}\n`; // Format the data
-
-        console.log('Writing to waitlist.txt...');
-        fs.appendFileSync('waitlist.txt', dataToStore, 'utf8');
-        console.log('Data written to waitlist.txt');
-
 
         // Return a success response
         return {
             statusCode: 200,
             body: JSON.stringify({
-                message: 'Email sent and user added to waitlist!',
+                message: 'Email sent successfully!',
             }),
         };
     } catch (error) {
@@ -97,7 +88,7 @@ exports.handler = async (event, context) => {
         return {
             statusCode: 500,
             body: JSON.stringify({
-                error: 'Failed to send email and/or write to waitlist',
+                error: 'Failed to send email',
                 details: error.response ? error.response.body : error.message,
             }),
         };
