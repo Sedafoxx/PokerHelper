@@ -44,6 +44,14 @@ exports.handler = async (event, context) => {
                   border-radius: 5px;
                   display: inline-block;
                 }
+                .share-button {
+                  background-color: #b9363e;
+                  color: white;
+                  padding: 10px 20px;
+                  text-decoration: none;
+                  border-radius: 5px;
+                  display: inline-block;
+                }
                 @media only screen and (max-width: 600px) {
                   .content {
                     font-size: 16px;
@@ -67,10 +75,6 @@ exports.handler = async (event, context) => {
               <!-- WhatsApp Share -->
               <p>
                 <a href="https://wa.me/?text=I just signed up for PokerHelper, check it out at https://pokerhelper.ddns.net!" class="cta-button">Share on WhatsApp</a>
-              </p>
-
-              <p>
-                <a href="sms:&body=Check%20out%20PokerHelper%20at%20https://pokerhelper.ddns.net!%20It%20has%20awesome%20features%20for%20poker%20players.">Share via SMS</a>
               </p>
               
               <p>
