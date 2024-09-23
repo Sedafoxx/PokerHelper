@@ -215,22 +215,26 @@ if (!isMobile()) {
 // Join the waiting list
 document.getElementById('submit-button').addEventListener('click', (event) => {
     event.preventDefault(); // Prevent form submission and page reload
-    
+
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
 
-    // Send data to the server (Assuming store_user.php handles storing the data)
-    fetch('store_user.php', {
+    // Send data to the Netlify function
+    fetch('store-and-send-email', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/json'
         },
-        body: `name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`
+        body: JSON.stringify({ name: name, email: email }) // Send the data as JSON
     })
-    .then(response => response.text())
+    .then(response => response.json())
     .then(data => {
-        // Show confirmation message
-        document.getElementById('confirmation-message').style.display = 'block';
+        if (data.message) {
+            document.getElementById('confirmation-message').style.display = 'block';
+            console.log('Success:', data.message);
+        } else {
+            console.error('Error:', data.error);
+        }
     })
     .catch(error => {
         console.error('Error:', error);
