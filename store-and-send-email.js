@@ -1,12 +1,9 @@
-// using Twilio SendGrid's v3 Node.js Library
-// https://github.com/sendgrid/sendgrid-nodejs
-
 const sgMail = require('@sendgrid/mail')
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 const msg = {
-  to: 'buryakdimitri@gmail.com', // Change to your recipient
-  from: 'pokerhelper@proton.me', // Change to your verified sender
+  to: 'buryakdimitri@gmail.com',
+  from: 'pokerhelper@proton.me',
   subject: 'Thanks for signing up!',
   text: 'Thank you for signing up to PokerHelper! We’re rolling out access step by step, and you will be notified as soon as the app is ready for you to try.',
   html: `
