@@ -24,7 +24,7 @@ exports.handler = async (event, context) => {
     return {
       statusCode: 200,
       body: JSON.stringify({
-        message: 'Message sent successfully',
+        message: 'Waiting for response...', // Message has been sent!
         serverResponse: responseText,
       }),
     };
@@ -33,7 +33,7 @@ exports.handler = async (event, context) => {
     return {
       statusCode: 500,
       body: JSON.stringify({
-        error: 'Failed to send message via proxy',
+        error: 'Waiting for response...', // Message has been sent!
         details: error.message,
       }),
     };

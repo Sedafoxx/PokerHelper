@@ -63,12 +63,21 @@ exports.handler = async (event, context) => {
               </ul>
 
               <p>Your password to unlock the demo will be sent to you soon. Stay tuned for more details!</p>
+
+              <!-- WhatsApp Share -->
+              <p>
+                <a href="https://wa.me/?text=I just signed up for PokerHelper, check it out at https://pokerhelper.ddns.net!" class="cta-button">Share on WhatsApp</a>
+              </p>
+
+              <p>
+                <a href="sms:&body=Check%20out%20PokerHelper%20at%20https://pokerhelper.ddns.net!%20It%20has%20awesome%20features%20for%20poker%20players.">Share via SMS</a>
+              </p>
               
               <p>
-                <a href="https://twitter.com/intent/tweet?text=Check%20out%20PokerHelper!" class="share-button">Share on Twitter</a>
                 <a href="mailto:?subject=Check%20out%20PokerHelper&body=Try%20out%20PokerHelper%20here:%20https://pokerhelper.ddns.net" class="share-button">Share via Email</a>
               </p>
-              <p>Best regards,<br><strong>The PokerHelper Team</strong></p>
+
+              <p>Thank you for your interest! We are excited to have you on board on this beautiful journey!<br><strong>The PokerHelper Team</strong></p>
             </body>
             </html>
             `
@@ -81,7 +90,7 @@ exports.handler = async (event, context) => {
         return {
             statusCode: 200,
             body: JSON.stringify({
-                message: 'Email sent successfully!',
+                message: 'Thank you for signing up! A confirmation email has been sent!',
             }),
         };
     } catch (error) {
