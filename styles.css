@@ -99,7 +99,7 @@ form {
 }
 
 .form-section form {
-    text-align: left;
+    text-align: center;
     margin: 20px auto;
     width: 100%;
     max-width: 400px;
@@ -253,6 +253,7 @@ button:hover {
     cursor: none;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
     position: relative;
+    display: inline-block;
 }
 
 #submit-button:hover {
@@ -333,13 +334,15 @@ button:hover {
     /* Move the GIF to a new location on mobile */
     #submit-button::before,
     #submit-button::after {
+        position: absolute;
         top: 1650%; /* Adjust vertical positioning */
-        left: 23%; /* Move the GIFs to the horizontal center */
-        transform: translate(-50%, -50%); /* Center horizontally and vertically */
+        left: 50%; /* Move the GIFs to the horizontal center */
+        transform: translate(-300%, +100%); /* Center horizontally and vertically */
         width: 40px; /* Adjust size if necessary */
         height: 40px; /* Adjust size if necessary */
     }
 }
+
 
 /* Dots container styling */
 .dots-container {
