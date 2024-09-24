@@ -162,13 +162,18 @@ button:hover {
     cursor: none;
 }
 
+#check-password {
+    margin-bottom: 50px; /* Adjust this value to increase/decrease space */
+}
+
+
 
 /* Carousel container */
 .carousel-container {
     position: relative; /* Make this container the reference point for absolute positioning */
     width: 100%;
     max-width: 278px; /* Adjust to control the overall width of the container */
-    margin: 30px auto 0; /* Add top margin to create space between header and carousel */
+    margin: 0px auto 0; /* Add top margin to create space between header and carousel */
     height: 620px; /* Fixed height to match the phone frame */
     overflow: hidden; /* Hide overflow to keep images within the frame */
 }
@@ -233,6 +238,8 @@ button:hover {
     font-size: 1.2rem;
     margin: 0px 0;
 }
+
+
 
 
 
