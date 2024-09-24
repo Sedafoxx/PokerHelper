@@ -11,11 +11,30 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'SensibleArmadillo';
+    src: url('A Sensible Armadillo.ttf') format('truetype'); /* Path to the font file */
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Conformity';
+    src: url('conformity.TTF') format('truetype'); /* Path to the font file */
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ComingSoon';
+    src: url('ComingSoon.ttf') format('truetype');
+}
+
 
 body {
     background: url('paper_texture_3.jpg') no-repeat center center fixed;
     background-size: cover;
-    font-family: 'NexaRustHandmade', sans-serif;
+    font-family: 'ComingSoon', sans-serif;
     color: #e7e7e7;
     margin: 0;
     padding: 0;
@@ -102,7 +121,7 @@ form {
     border: none;
     padding: 15px;
     font-size: 1.2rem;
-    font-family: 'NexaRustHandmade', sans-serif;
+    font-family: 'ComingSoon', sans-serif;
     color: #212121;
     width: 100%;
     cursor: none;
@@ -119,7 +138,7 @@ input {
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
-    font-family: 'NexaRustHandmade', sans-serif;
+    font-family: 'ComingSoon', sans-serif;
     border-radius: 4px;
     box-sizing: border-box;
     cursor: none;
@@ -130,7 +149,7 @@ button {
     border: none;
     padding: 15px;
     font-size: 1.2rem;
-    font-family: 'NexaRustHandmade', sans-serif;
+    font-family: 'ComingSoon', sans-serif;
     color: #212121;
     width: 100%;
     cursor: pointer;
@@ -263,7 +282,7 @@ button:hover {
     color: white;
     padding: 15px;
     font-size: 1.2rem;
-    font-family: 'NexaRustHandmade', sans-serif;
+    font-family: 'ComingSoon', sans-serif;
     border: none;
     cursor: none;
     width: auto;
