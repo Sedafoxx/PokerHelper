@@ -4,11 +4,19 @@
     src: url('fiveyearsoldfont.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: 'NexaRustHandmade';
+    src: url('NexaRustHandmade-Extended.otf') format('opentype'); /* Ensure the correct path is used */
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 body {
     background: url('paper_texture_3.jpg') no-repeat center center fixed;
     background-size: cover;
-    font-family: 'FiveYearsOldFont', sans-serif;
-    color: #212121;
+    font-family: 'NexaRustHandmade', sans-serif;
+    color: #e7e7e7;
     margin: 0;
     padding: 0;
     cursor: none;
@@ -31,7 +39,7 @@ header {
 /* Title styling */
 header h1 {
     font-size: 3rem;
-    color: #b9363e;
+    color: #ffffff;
     margin: 0;
 }
 
@@ -50,7 +58,7 @@ header p {
 
 h1 {
     font-size: 3rem;
-    color: #b9363e;
+    color: #ffffff;
     margin: 0;
     min-height: 50px; /* Set minimum height to reserve space for multiline text */
 }
@@ -94,7 +102,7 @@ form {
     border: none;
     padding: 15px;
     font-size: 1.2rem;
-    font-family: 'FiveYearsOldFont', sans-serif;
+    font-family: 'NexaRustHandmade', sans-serif;
     color: #212121;
     width: 100%;
     cursor: none;
@@ -111,7 +119,7 @@ input {
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
-    font-family: 'FiveYearsOldFont', sans-serif;
+    font-family: 'NexaRustHandmade', sans-serif;
     border-radius: 4px;
     box-sizing: border-box;
     cursor: none;
@@ -122,7 +130,7 @@ button {
     border: none;
     padding: 15px;
     font-size: 1.2rem;
-    font-family: 'FiveYearsOldFont', sans-serif;
+    font-family: 'NexaRustHandmade', sans-serif;
     color: #212121;
     width: 100%;
     cursor: pointer;
@@ -148,17 +156,21 @@ button:hover {
 
 .carousel {
     position: relative;
-    width: 101%;
+    width: 100%;
     height: 100%; /* Make sure the carousel takes the full height of the container */
     display: flex;
     justify-content: center;
-    align-items: center; /* Center the image vertically */
+    align-items: center;
+    transform: translateY(15px); /* Adjust this value to shift items down */
 }
+
+
 
 .slides {
     display: flex;
     transition: transform 0.8s ease-in-out; /* Add transition for smooth sliding */
     height: 93%; /* Ensure slides container takes full height */
+    justify-content: flex-start;
 }
 
 .slides img {
@@ -166,6 +178,8 @@ button:hover {
     height: 95%;
     object-fit: contain; /* Adjusts the image to fit inside the container while maintaining its aspect ratio */
     flex-shrink: 0; /* Prevent images from shrinking */
+    margin: 0; /* Remove any margin */
+    padding: 0; /* Remove any padding */
 }
 
 /* Phone frame overlay */
@@ -175,7 +189,7 @@ button:hover {
     left: 50%; /* Center the frame horizontally */
     transform: translate(-50%, -50%); /* Adjust to align the frame correctly */
     width: 295px; /* Set a fixed width */
-    height: 630px; /* Set a fixed height */
+    height: 600px; /* Set a fixed height */
     z-index: 2; /* Ensure the frame is on top of the carousel */
     pointer-events: none; /* Allow interactions with the carousel images behind the frame */
 }
@@ -186,9 +200,9 @@ button:hover {
 }
 
 .feature-text-container {
-    margin: 20px 0; /* Add some spacing around the text */
+    margin: 0px 0; /* Add some spacing around the text */
     text-align: center;
-    color: #b9363e; /* Color to match your theme */
+    color: #ffffff; /* Color to match your theme */
 }
 
 .feature-text-container h2 {
@@ -198,7 +212,7 @@ button:hover {
 
 .feature-text-container p {
     font-size: 1.2rem;
-    margin: 10px 0;
+    margin: 0px 0;
 }
 
 
@@ -249,7 +263,7 @@ button:hover {
     color: white;
     padding: 15px;
     font-size: 1.2rem;
-    font-family: 'FiveYearsOldFont', sans-serif;
+    font-family: 'NexaRustHandmade', sans-serif;
     border: none;
     cursor: none;
     width: auto;
@@ -273,7 +287,7 @@ button:hover {
 }
 
 /* Media query for mobile screens */
-@media (max-width: 600px) {
+@media (max-width: 1000px) {
     /* Hide custom cursor on mobile */
     .custom-cursor {
         display: none;
@@ -282,9 +296,11 @@ button:hover {
     /* Move the GIF to a new location on mobile */
     #submit-button::before,
     #submit-button::after {
-        top: 1800%; /* Adjust position as needed */
-        left: 20%; /* Adjust horizontal position */
-        transform: translate(0%, 50%); /* Center it relative to its position */
+        top: 1900%; /* Adjust vertical positioning */
+        left: 25%; /* Move the GIFs to the horizontal center */
+        transform: translate(-50%, -50%); /* Center horizontally and vertically */
+        width: 40px; /* Adjust size if necessary */
+        height: 40px; /* Adjust size if necessary */
     }
 }
 
