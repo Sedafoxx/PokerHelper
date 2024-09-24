@@ -322,8 +322,8 @@ button:hover {
     /* Move the GIF to a new location on mobile */
     #submit-button::before,
     #submit-button::after {
-        top: 1900%; /* Adjust vertical positioning */
-        left: 25%; /* Move the GIFs to the horizontal center */
+        top: 1650%; /* Adjust vertical positioning */
+        left: 23%; /* Move the GIFs to the horizontal center */
         transform: translate(-50%, -50%); /* Center horizontally and vertically */
         width: 40px; /* Adjust size if necessary */
         height: 40px; /* Adjust size if necessary */
