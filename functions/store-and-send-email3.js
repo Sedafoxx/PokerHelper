@@ -70,7 +70,7 @@ exports.handler = async (event, context) => {
                 <li>Table, prize pool, and time management tools for tournaments.</li>
               </ul>
 
-              <p>Your password to unlock the demo will be sent to you soon. Stay tuned for more details!</p>
+              <p>The secret password is: IAMALLIN</p>
 
               <!-- WhatsApp Share -->
               <p>
