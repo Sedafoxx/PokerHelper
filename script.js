@@ -294,7 +294,7 @@ document.getElementById('check-password').addEventListener('click', (event) => {
     if (password === 'IAMALLIN') {
         const apkLink = document.getElementById('apk-link');
         apkLink.style.display = 'block'; // Show download link
-        apkLink.href = 'https://e.pcloud.link/publink/show?code=XZAW7CZXIku4IglaCFEqVR65AqwQFARutkX';
+        apkLink.href = 'https://e.pcloud.link/publink/show?code=XZFIkCZC4hu1srdqgLXVFP0yhWj34Ky5cvX';
         // Show money rain animation
         document.getElementById('money-rain').style.display = 'block';
         
