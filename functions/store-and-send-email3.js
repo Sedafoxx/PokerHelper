@@ -61,27 +61,39 @@ exports.handler = async (event, context) => {
             </head>
             <body style="font-family: Arial, sans-serif;">
               <img src="https://pokerhelper.ddns.net/header.png" alt="PokerHelper" style="width: 100%; height: auto;">
+              
               <p>Hi ${name},</p>
-              <p>Thank you for signing up to <strong>PokerHelper</strong>! We’re thrilled to have you on board.</p>
-              <p><strong>With PokerHelper, you can:</strong></p>
+
+              <p>Welcome to <strong>PokerHelper</strong>! We're excited that you've taken the first step toward enhancing your poker game. Whether you're a seasoned player or just getting started, we're here to support you at every level.</p>
+
+              <p><strong>With PokerHelper, you'll be able to:</strong></p>
               <ul>
-                <li>Learn poker strategies from beginner to pro.</li>
-                <li>Track chips, money, and player stats effortlessly.</li>
-                <li>Table, prize pool, and time management tools for tournaments.</li>
+                <li>Master poker strategies, from beginner fundamentals to advanced techniques.</li>
+                <li>Effortlessly track chips, money, and player stats to keep your game sharp.</li>
+                <li>Manage tables, prize pools, and time for your tournaments with ease.</li>
               </ul>
 
-              <p>The secret password is: IAMALLIN</p>
+              <p>And that’s just the beginning! You’re about to unlock a new way to play and win in poker. To kick things off, we have something special for you.</p>
+
+              <p><strong>Your secret password:</strong></p>
+
+              <p style="font-size: 1.2em; color: #d9534f; font-weight: bold;">IAMALLIN</p>
+
+              <p>Use this password to access exclusive features within the app and dive into your personalized poker experience!</p>
 
               <!-- WhatsApp Share -->
-              <p>
-                <a href="https://wa.me/?text=I just signed up for PokerHelper, check it out at https://pokerhelper.ddns.net!" class="cta-button">Share on WhatsApp</a>
-              </p>
-              
-              <p>
-                <a href="mailto:?subject=Check%20out%20PokerHelper&body=Try%20out%20PokerHelper%20here:%20https://pokerhelper.ddns.net" class="share-button">Share via Email</a>
+              <p style="margin-top: 20px;">
+                <a href="https://wa.me/?text=I just signed up for PokerHelper, check it out at https://pokerhelper.ddns.net!" class="cta-button" style="background-color: #25d366; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Share on WhatsApp</a>
               </p>
 
-              <p>Thank you for your interest! We are excited to have you on board on this beautiful journey!<br><strong>The PokerHelper Team</strong></p>
+              <!-- Email Share -->
+              <p>
+                <a href="mailto:?subject=Check%20out%20PokerHelper&body=Try%20out%20PokerHelper%20here:%20https://pokerhelper.ddns.net" class="share-button" style="background-color: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Share via Email</a>
+              </p>
+
+              <p>Thank you for joining us on this exciting journey. We can’t wait to see you rise through the ranks of poker pros!</p>
+
+              <p><strong>The PokerHelper Team</strong></p>
             </body>
             </html>
             `
