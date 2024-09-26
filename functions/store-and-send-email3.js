@@ -79,7 +79,7 @@ exports.handler = async (event, context) => {
 
               <p style="font-size: 1.2em; color: #d9534f; font-weight: bold;">IAMALLIN</p>
 
-              <p>Use this password to access exclusive features within the app and dive into your personalized poker experience!</p>
+              <p>Use this password to access the exclusive Beta APK on our website!</p>
 
               <!-- WhatsApp Share -->
               <p style="margin-top: 20px;">
