@@ -152,7 +152,6 @@ button {
     font-family: 'ComingSoon', sans-serif;
     color: #212121;
     width: 100%;
-    cursor: pointer;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
     cursor: none;
 }
@@ -386,7 +385,7 @@ button:hover {
     background: linear-gradient(45deg, #ff4b2b, #ff416c);
     border: none;
     border-radius: 50px;
-    cursor: pointer;
+    cursor: none;
     text-align: center;
     text-decoration: none;
     font-weight: bold;
@@ -435,4 +434,3 @@ button:hover {
 #apk-link:active {
     animation: pulse 0.8s infinite;
 }
-
