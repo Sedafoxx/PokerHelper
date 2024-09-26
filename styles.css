@@ -254,6 +254,7 @@ button:hover {
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
     position: relative;
     display: inline-block;
+    z-index: 9998;
 }
 
 #submit-button:hover {
