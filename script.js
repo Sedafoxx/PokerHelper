@@ -294,8 +294,7 @@ document.getElementById('check-password').addEventListener('click', (event) => {
     if (password === 'IAMALLIN') {
         const apkLink = document.getElementById('apk-link');
         apkLink.style.display = 'block'; // Show download link
-        apkLink.href = 'https://edef7.pcloud.com/cBZ7nD5WMZBtQLboZZZ3iWqkkZ2ZZBU0ZkZrodk5ZbzZ97ZdHZhkZq0ZtpZA0ZDFZdJZzVZ7zZNHZFpZ9pZ3J3PZbH2mCLrt8oRwwshaqA1Maz9qWcAV/pokerhelper.apk'; // Set link dynamically
-        
+        apkLink.href = 'https://e.pcloud.link/publink/show?code=XZAW7CZXIku4IglaCFEqVR65AqwQFARutkX';
         // Show money rain animation
         document.getElementById('money-rain').style.display = 'block';
         
